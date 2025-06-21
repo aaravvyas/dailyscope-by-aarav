@@ -66,6 +66,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
+            z-index: 1000;
         }
 
         .theme-toggle:hover {
@@ -191,6 +192,15 @@
 
             h1 {
                 font-size: 24px;
+            }
+
+            .theme-toggle {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                z-index: 1000;
             }
         }
     </style>
