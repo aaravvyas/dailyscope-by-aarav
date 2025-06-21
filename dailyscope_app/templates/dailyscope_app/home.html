@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | DailyScope</title>
     <style>
         :root {
@@ -78,6 +79,32 @@
             font-weight: 500;
         }
 
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .nav-button {
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid var(--button-text);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        .nav-button:hover {
+            background: var(--button-hover-bg);
+            color: var(--button-hover-text);
+        }
+
         .news-container {
             display: flex;
             flex-wrap: wrap;
@@ -142,61 +169,14 @@
             background: #0056b3;
         }
 
-        .nav-button {
-            position: absolute;
-            top: 20px;
-            background: var(--button-bg);
-            color: var(--button-text);
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 2px solid var(--button-text);
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .nav-button:hover {
-            background: var(--button-hover-bg);
-            color: var(--button-hover-text);
-        }
-
-        .profile-button {
-            left: 40px;
-        }
-
-        .about-button {
-            left: 140px;
-        }
-
-        .contact-button {
-            left: 260px;
-        }
-
-        .feedback-button {
-            left: 390px;
-        }
-
-
         @keyframes slideDown {
-            from {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @keyframes fadeIn {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -208,6 +188,10 @@
             .card {
                 width: 90%;
             }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -216,14 +200,13 @@
         <h1>Welcome to DailyScope 📰</h1>
         <p>Smart News Update Platform</p>
 
-        <!-- Navigation Buttons -->
-        <a href="{% url 'profile' %}" class="nav-button profile-button">Profile</a>
-        <a href="{% url 'about' %}" class="nav-button about-button">About Us</a>
-        <a href="{% url 'contact' %}" class="nav-button contact-button">Contact Us</a>
-        <a href="{% url 'feedback' %}" class="nav-button feedback-button">Feedback</a>
+        <div class="nav-buttons">
+            <a href="{% url 'profile' %}" class="nav-button">Profile</a>
+            <a href="{% url 'about' %}" class="nav-button">About Us</a>
+            <a href="{% url 'contact' %}" class="nav-button">Contact Us</a>
+            <a href="{% url 'feedback' %}" class="nav-button">Feedback</a>
+        </div>
 
-
-        <!-- Theme Toggle -->
         <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
     </header>
 
@@ -232,9 +215,8 @@
             {% for news in news_list %}
             <div class="card">
                 {% if news.image %}
-                      <img src="{{ news.image }}" alt="News Image">
+                    <img src="{{ news.image }}" alt="News Image">
                 {% endif %}
-
                 <div class="card-content">
                     <h3>{{ news.title }}</h3>
                     <p>{{ news.summary }}</p>
