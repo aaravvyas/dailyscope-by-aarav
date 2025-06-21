@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | DailyScope</title>
+    <style>
+        :root {
+            --bg-color: linear-gradient(to right, #f0f4ff, #e8f0ff);
+            --text-color: #333;
+            --card1: #fff3cd;
+            --card2: #d4edda;
+            --card3: #f8d7da;
+            --card4: #d1ecf1;
+            --card-bg: #ffffff;
+            --header-bg: linear-gradient(90deg, #0073e6, #00c6ff);
+            --button-bg: white;
+            --button-text: #007bff;
+            --button-hover-bg: #007bff;
+            --button-hover-text: white;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --card-bg: #1e1e1e;
+            --header-bg: linear-gradient(90deg, #1f1f1f, #333);
+            --button-bg: #444;
+            --button-text: white;
+            --button-hover-bg: #222;
+            --button-hover-text: white;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 32px;
+            animation: slideDown 0.7s ease-out;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 8px 16px;
+            border: 2px solid var(--button-text);
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--button-hover-bg);
+            color: var(--button-hover-text);
+        }
+
+        p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 320px;
+            margin: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: #0073e6;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: var(--text-color);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .read-more:hover {
+            background: #0056b3;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 20px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid var(--button-text);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-button:hover {
+            background: var(--button-hover-bg);
+            color: var(--button-hover-text);
+        }
+
+        .profile-button {
+            left: 40px;
+        }
+
+        .about-button {
+            left: 140px;
+        }
+
+        .contact-button {
+            left: 260px;
+        }
+
+        .feedback-button {
+            left: 390px;
+        }
+
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .news-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to DailyScope 📰</h1>
+        <p>Smart News Update Platform</p>
+
+        <!-- Navigation Buttons -->
+        <a href="{% url 'profile' %}" class="nav-button profile-button">Profile</a>
+        <a href="{% url 'about' %}" class="nav-button about-button">About Us</a>
+        <a href="{% url 'contact' %}" class="nav-button contact-button">Contact Us</a>
+        <a href="{% url 'feedback' %}" class="nav-button feedback-button">Feedback</a>
+
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    </header>
+
+    <div class="news-container">
+        {% if news_list %}
+            {% for news in news_list %}
+            <div class="card">
+                {% if news.image %}
+                      <img src="{{ news.image }}" alt="News Image">
+                {% endif %}
+
+                <div class="card-content">
+                    <h3>{{ news.title }}</h3>
+                    <p>{{ news.summary }}</p>
+                    <p><strong>Date:</strong> {{ news.date }}</p>
+                    <a href="{{ news.url }}" target="_blank" class="read-more">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: red; font-size: 18px;">No news available at the moment. Please check back later.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            const mode = document.body.classList.contains("dark-mode") ? "dark" : "light";
+            localStorage.setItem("theme", mode);
+        }
+    </script>
+</body>
+</html>

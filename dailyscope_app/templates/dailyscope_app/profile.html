@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile | DailyScope</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #e0f7fa, #ffffff);
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0073e6, #00c6ff);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .profile-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h2 {
+            text-align: center;
+            color: #0073e6;
+        }
+
+        .profile-detail {
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+        }
+
+        .home-btn {
+            background-color: #5bc0de;
+        }
+
+        .logout-btn {
+            background-color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>👤 Profile Page</h1>
+    </header>
+
+    <div class="profile-container">
+        <h2>Welcome, {{ user.username }}</h2>
+        <p class="profile-detail"><strong>Email:</strong> {{ user.email|default:"Not Provided" }}</p>
+        <p class="profile-detail"><strong>Joined On:</strong> {{ user.date_joined|date:"d M Y" }}</p>
+
+        <div class="btn-container">
+            <a href="{% url 'home' %}" class="btn home-btn">← Back to Home</a>
+            <a href="{% url 'logout_confirm' %}" class="btn logout-btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
