@@ -1,0 +1,1 @@
+web: gunicorn dailyscope_project.wsgi
